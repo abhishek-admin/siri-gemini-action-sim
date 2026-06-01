@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siri-Gemini Action Simulator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="kicker">WWDC26 concept</p>
+        <h1>Siri-Gemini Action Simulator</h1>
+      </div>
+      <button id="settings-btn" class="icon-btn" type="button" title="API settings" aria-label="API settings">⚙</button>
+    </header>
+
+    <section class="signal-strip" aria-label="Safety model">
+      <span>Reads current page</span>
+      <span>Plans with Gemini</span>
+      <span>Preview first</span>
+      <span>No auto-clicks</span>
+    </section>
+
+    <section id="settings-panel" class="settings-panel hidden" aria-label="API settings">
+      <div class="panel-head">
+        <strong>API Settings</strong>
+        <button id="settings-close" class="icon-btn small" type="button" aria-label="Close settings">×</button>
+      </div>
+      <label class="field-label" for="gemini-key-input">Gemini API key</label>
+      <div class="key-row">
+        <input id="gemini-key-input" class="text-input" type="password" placeholder="AIza..." autocomplete="off">
+        <button id="toggle-gemini-key" class="mini-btn" type="button">Show</button>
+      </div>
+      <label class="field-label" for="openrouter-key-input">OpenRouter fallback key</label>
+      <div class="key-row">
+        <input id="openrouter-key-input" class="text-input" type="password" placeholder="sk-or-..." autocomplete="off">
+        <button id="toggle-openrouter-key" class="mini-btn" type="button">Show</button>
+      </div>
+      <div class="settings-actions">
+        <button id="save-keys-btn" class="primary-btn compact" type="button">Save Keys</button>
+        <button id="clear-keys-btn" class="ghost-btn compact" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="hero-panel">
+      <div class="orb" aria-hidden="true"></div>
+      <p class="subtitle">Ask the page to do something. The extension reads visible context, creates a safe action plan, then waits for your approval.</p>
+      <textarea id="command-input" class="command-input" rows="4" placeholder="Example: Decode this job post, highlight red flags, and draft a sharp X reply about what Siri should do with this context."></textarea>
+      <div class="preset-grid">
+        <button class="preset-btn" type="button" data-command="Read this page like Siri with Gemini underneath. Summarize what matters, identify the user's likely intent, and draft a concise X reply about the WWDC angle.">WWDC reply</button>
+        <button class="preset-btn" type="button" data-command="Analyze this page for dark patterns, hidden costs, or manipulative UI. Highlight the suspicious parts and explain the risk.">Dark patterns</button>
+        <button class="preset-btn" type="button" data-command="If this page has a form or text box, draft a helpful response I can approve and fill. Do not submit anything.">Draft + fill</button>
+        <button class="preset-btn" type="button" data-command="Explain what Apple would need to expose as safe app actions for Siri to do this without breaking user trust.">Siri API take</button>
+      </div>
+      <button id="run-btn" class="primary-btn" type="button">Build Safe Action Plan</button>
+    </section>
+
+    <section id="status-card" class="status-card hidden" aria-live="polite"></section>
+
+    <section id="plan-card" class="plan-card hidden">
+      <div class="plan-head">
+        <div>
+          <p class="kicker">Preview plan</p>
+          <h2 id="plan-title">Ready to review</h2>
+        </div>
+        <span id="risk-pill" class="risk-pill">Safe</span>
+      </div>
+
+      <div id="answer-box" class="answer-box"></div>
+      <div id="actions-list" class="actions-list"></div>
+
+      <div class="button-row">
+        <button id="preview-btn" class="ghost-btn" type="button">Preview on Page</button>
+        <button id="apply-btn" class="primary-btn" type="button">Apply Safe Actions</button>
+      </div>
+      <button id="copy-btn" class="copy-btn" type="button">Copy Draft / Summary</button>
+    </section>
+
+    <footer class="footer">
+      <span>Concept prototype, not official Apple or Siri.</span>
+      <span>Day 15 pivot</span>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
