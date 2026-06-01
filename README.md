@@ -11,6 +11,10 @@
 
 </div>
 
+<p align="center">
+  <img src="demo.gif" alt="Siri-Gemini Action Simulator Demo" width="800">
+</p>
+
 ---
 
 ## The Bet
